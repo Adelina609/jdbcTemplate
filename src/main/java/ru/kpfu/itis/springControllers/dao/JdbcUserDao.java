@@ -22,20 +22,14 @@ public class JdbcUserDao implements UserDao {
     jdbcTemplate = new JdbcTemplate(dataSource);
   }
 
+  private String c = "C:\\Users\\user\\Desktop\\Extension for Chrome\\right.PNG";
     public User getUser(String email) {
         return jdbcTemplate.queryForObject(
                 "select * from \"user\" where email = ?",
                 new Object[]{email},
-                (ResultSet rs, int rowNum) -> {
-                    if(rs.next()){
-                        System.out.println("RESULTSET IS NOT NULL" + rs.getString("username"));
-                        return new User(rs.getString("username"), rs.getString("password"),
-                                rs.getString("email"));
-                    } else {
-                        return null;
-                    }
-
-                }
+                (ResultSet rs, int rowNum) ->
+                        new User(rs.getString("username"), rs.getString("password"),
+                        rs.getString("email"))
         );
     }
 
@@ -50,6 +44,6 @@ public class JdbcUserDao implements UserDao {
     }
 
     public int deleteUser(User user){
-      return jdbcTemplate.update("DELETE FROM \"user\" WHERE user.email = ?", user.getEmail());
+      return jdbcTemplate.update("DELETE FROM \"user\" WHERE email = ?", user.getEmail());
     }
 }

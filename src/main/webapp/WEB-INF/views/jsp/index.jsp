@@ -7,14 +7,15 @@
         <title>Book JDBC Example</title>
     </head>
     <body>
-        <h2>${message}</h2>
-    <form:form method="POST" modelAttribute="userCrud">
+        <h2>User ${message.getName()} updated</h2>
 
-        <form:label path="email">Email</form:label>
-        <form:input id="email" path="email"/>
-        <form:errors path="email" /><br>
+    <%--<form:form method="POST" modelAttribute="userCrud">--%>
 
-    <button type="submit" name="del">Удалить</button>
-    </form:form>
+        <%--<form:label path="email">Email</form:label>--%>
+        <%--<form:input id="email" path="email"/>--%>
+        <%--<form:errors path="email" /><br>--%>
+
+    <%--<button type="submit" name="del">Удалить</button>--%>
+    <%--</form:form>--%>
     </body>
 </html>
