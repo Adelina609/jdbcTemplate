@@ -1,5 +1,6 @@
 package ru.kpfu.itis.springControllers.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -7,6 +8,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "user_table")
 public class User implements Serializable {
 
     public User(@NotNull(message = "Введите имя") @Size(min = 2, max = 15, message = "Имя должно быть не менее 2 символов") String name, @NotNull(message = "Введите email") @Pattern(regexp = "^(?:[a-zA-Z0-9_'^&/+-])+(?:\\.(?:[a-zA-Z0-9_'^&/+-])+)" +
@@ -18,6 +21,10 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
     }
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     public User(){}
 

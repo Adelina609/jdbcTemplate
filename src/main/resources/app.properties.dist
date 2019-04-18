@@ -1,0 +1,5 @@
+jdbc.driver   =org.postgresql.Driver
+jdbc.uri      =jdbc:postgresql://localhost:5432/postgres
+
+db.user     =postgres
+db.password =123456
