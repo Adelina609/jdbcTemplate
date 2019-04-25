@@ -15,16 +15,16 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="description/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='description/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='description/css'>
 
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="/css/modal_window.css"/>">
     <script>
         function pageLoad() {
-            var x = get_cookie ( "username" );
+            var x = get_cookie ( "link" );
             if (x) {
                 var y = document.getElementById("login");
                 y.style.display ="none";
@@ -81,7 +81,7 @@
                 </div>
                 <div class="form-title">Email</div>
                 <input class="form-field"
-                       name="email" type="text"
+                       name="email" type="description"
                         <c:if test="${not empty emailValue}">
                             value=${emailValue}
                         </c:if>/><br />

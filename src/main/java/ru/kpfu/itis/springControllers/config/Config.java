@@ -14,11 +14,14 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import ru.kpfu.itis.springControllers.dao.UserRepo;
 import ru.kpfu.itis.springControllers.model.Episode;
 import ru.kpfu.itis.springControllers.model.Person;
 import ru.kpfu.itis.springControllers.model.StringToEntityConverter;
+import ru.kpfu.itis.springControllers.model.User;
 
 import java.util.Locale;
+import java.util.Optional;
 
 @Configuration
 @ComponentScan("ru.kpfu.itis.springControllers.controllers")

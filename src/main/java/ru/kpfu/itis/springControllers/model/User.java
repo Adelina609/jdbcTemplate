@@ -52,10 +52,6 @@ public class User implements Serializable {
     @NotNull(message = "Задайте пароль")
     private String password;
 
-//    @NotNull(message = "Укажите пол")
-//    private String gender;
-//
-//    private boolean subscribe;
 
     public String getName() {
         return name;
