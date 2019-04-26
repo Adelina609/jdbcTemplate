@@ -47,6 +47,7 @@
                         </div>
                         <p class="post-meta">Posted by
                                 ${article.getUsername()}</p>
+
                     </div>
                 </c:forEach>
             </div>
