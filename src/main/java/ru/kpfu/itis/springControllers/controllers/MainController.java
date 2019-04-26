@@ -26,10 +26,10 @@ import java.util.List;
 @RequestMapping("/scitopus")
 public class MainController {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
-    @RequestMapping(value = "/main",  method = RequestMethod.GET)
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(ModelMap map) {
         //map.put("viewVariable", "Just simple action");
         List<Article> articles = new ArrayList<>();
@@ -54,7 +54,7 @@ public class MainController {
 //        return "signUp_form";
 //    }
 
-   // @RequestMapping(value = "/new_user", method = RequestMethod.POST)
+    // @RequestMapping(value = "/new_user", method = RequestMethod.POST)
 //    public String postSignUpPage(
 //            RedirectAttributes redirectAttributes,
 //            @Valid @ModelAttribute("user") User user,
@@ -84,16 +84,15 @@ public class MainController {
         if (result.hasErrors()) {
             System.out.println(Arrays.toString(result.getAllErrors().toArray()));
             return "registration";
-        }
-        else {
-            if(user == null){
+        } else {
+            if (user == null) {
                 System.out.println("NULLLLLLLLLLLLL");
             } else {
-                userService.save(user);
+                //userService.save(user);
                 System.out.println("********************");
             }
             redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
-                    " color: #bd2130\">Пользователь \""+
+                    " color: #bd2130\">Пользователь \"" +
                     "\" успешно добавлен</span>");
             return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#main").build();
         }
@@ -115,7 +114,7 @@ public class MainController {
         return "thanks";
     }
 
-    @RequestMapping(value = "/create",  method = RequestMethod.GET)
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map) {
         map.put("article", new Article());
         return "create";
@@ -131,16 +130,15 @@ public class MainController {
         if (result.hasErrors()) {
             System.out.println(Arrays.toString(result.getAllErrors().toArray()));
             return "create";
-        }
-        else {
-            if(article == null){
+        } else {
+            if (article == null) {
                 System.out.println("NULLLLLLLLLLLLL");
             } else {
                 //userService.save(article);
                 System.out.println("********************");
             }
             redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
-                    " color: #bd2130\">Пользователь \""+
+                    " color: #bd2130\">Пользователь \"" +
                     "\" успешно добавлен</span>");
             return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#create").build();
         }
