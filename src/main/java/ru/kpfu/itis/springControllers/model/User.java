@@ -22,10 +22,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "login_id", referencedColumnName = "id")
-    private Login login;
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -53,13 +49,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "login_id", referencedColumnName = "id")
+    private Login login;
+
     @NotNull(message = "Задайте пароль")
     private String password;
-
-//    @NotNull(message = "Укажите пол")
-//    private String gender;
-//
-//    private boolean subscribe;
 
     public String getName() {
         return name;
@@ -76,30 +71,6 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    public String getCountry() {
-//        return country;
-//    }
-//
-//    public void setCountry(String country) {
-//        this.country = country;
-//    }
-
-//    public String getGender() {
-//        return gender;
-//    }
-//
-//    public void setGender(String gender) {
-//        this.gender = gender;
-//    }
-//
-//    public boolean isSubscribe() {
-//        return subscribe;
-//    }
-//
-//    public void setSubscribe(boolean subscribe) {
-//        this.subscribe = subscribe;
-//    }
 
     @Override
     public String toString() {

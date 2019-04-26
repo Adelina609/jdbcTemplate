@@ -1,5 +1,6 @@
 package ru.kpfu.itis.springControllers.config;
 
+import okhttp3.OkHttpClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -14,19 +15,23 @@ import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+import ru.kpfu.itis.springControllers.api.Api;
 import ru.kpfu.itis.springControllers.model.Episode;
 import ru.kpfu.itis.springControllers.model.Person;
 import ru.kpfu.itis.springControllers.model.StringToEntityConverter;
+import ru.kpfu.itis.springControllers.repository.ApiService;
 
 import java.util.Locale;
 
 @Configuration
-@ComponentScan("ru.kpfu.itis.springControllers.controllers")
-@ComponentScan("ru.kpfu.itis.springControllers.dao")
-@ComponentScan("ru.kpfu.itis.springControllers.model")
-@EnableJpaRepositories(basePackages = {"ru.kpfu.itis.springControllers.dao"})
+@ComponentScan({"ru.kpfu.itis.springControllers.controllers",
+        "ru.kpfu.itis.springControllers.repository",
+        "ru.kpfu.itis.springControllers.model"})
+@EnableJpaRepositories(basePackages = {"ru.kpfu.itis.springControllers.repository"})
 @EnableWebMvc
-public class Config implements WebMvcConfigurer {
+public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     public StringToEntityConverter stringToEntityConverter;
@@ -39,6 +44,29 @@ public class Config implements WebMvcConfigurer {
         resolver.setViewClass(JstlView.class);
         resolver.setRedirectContextRelative(false);
         return resolver;
+    }
+
+    @Bean
+    public Retrofit retrofit(){
+        return new Retrofit.Builder()
+                .baseUrl("https://rickandmortyapi.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    @Bean
+    public OkHttpClient okHttpClient() {
+        return new OkHttpClient();
+    }
+
+    @Bean
+    public ApiService apiRepo(){
+        return new ApiService(okHttpClient());
+    }
+
+    @Bean
+    public Api getApi(){
+        return retrofit().create(Api.class);
     }
 
     @Override

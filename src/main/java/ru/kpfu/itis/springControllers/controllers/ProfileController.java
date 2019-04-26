@@ -15,6 +15,7 @@ import ru.kpfu.itis.springControllers.model.Login;
 import ru.kpfu.itis.springControllers.model.User;
 import ru.kpfu.itis.springControllers.services.UserService;
 import ru.kpfu.itis.springControllers.utils.SourcesAdd;
+import ru.kpfu.itis.springControllers.utils.UserNotFoundException;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -57,7 +58,7 @@ public class ProfileController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(ModelMap map) {
+    public String delete(ModelMap map) throws UserNotFoundException {
         userService.delete(new User());
         return "personal_area";
     }

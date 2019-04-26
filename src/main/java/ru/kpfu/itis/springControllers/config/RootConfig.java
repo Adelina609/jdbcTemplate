@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"ru.kpfu.itis.springControllers.model"})
-@EnableJpaRepositories(basePackages = {"ru.kpfu.itis.springControllers.dao"})
+@EnableJpaRepositories(basePackages = {"ru.kpfu.itis.springControllers.repository"})
 @PropertySource("classpath:app.properties")
 public class RootConfig {
 

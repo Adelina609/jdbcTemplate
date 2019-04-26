@@ -1,8 +1,7 @@
-package ru.kpfu.itis.springControllers.dao;
+package ru.kpfu.itis.springControllers.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import ru.kpfu.itis.springControllers.model.Article;
 
 @Repository

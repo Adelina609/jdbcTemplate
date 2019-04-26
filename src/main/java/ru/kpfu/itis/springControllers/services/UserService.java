@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.springControllers.dao.UserRepo;
+import ru.kpfu.itis.springControllers.repository.UserRepo;
 import ru.kpfu.itis.springControllers.model.User;
+import ru.kpfu.itis.springControllers.utils.UserNotFoundException;
 
-@ComponentScan("ru.kpfu.itis.springControllers.dao")
+@ComponentScan("ru.kpfu.itis.springControllers.repository")
 @ComponentScan("ru.kpfu.itis.springControllers.model")
 @Service
 public class UserService {
@@ -41,9 +42,9 @@ public class UserService {
         return user != null;
     }
 
-    public  void delete(User user){
+    public  void delete(User user) throws UserNotFoundException {
         if(!isEmailExists(user.getEmail())){
-            //
+            throw new UserNotFoundException("User not found");
         } else {
             userRepoo.delete(user);
         }

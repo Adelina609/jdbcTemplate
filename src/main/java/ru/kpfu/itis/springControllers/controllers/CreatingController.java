@@ -1,5 +1,6 @@
 package ru.kpfu.itis.springControllers.controllers;
 
+import com.sun.media.jfxmedia.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.kpfu.itis.springControllers.dao.ArticleRepo;
+import ru.kpfu.itis.springControllers.repository.ArticleRepo;
 import ru.kpfu.itis.springControllers.model.Article;
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 @Controller
 @RequestMapping("/scitopus")
@@ -36,19 +38,11 @@ public class CreatingController {
             BindingResult result,
             ModelMap map) {
 
-        if (result.hasErrors()) {
-            System.out.println(Arrays.toString(result.getAllErrors().toArray()));
+        if (result.hasErrors() || article==null) {
+            //Logger.logMsg(Level.INFO.intValue(),Arrays.toString(result.getAllErrors().toArray()));
             return "create";
         } else {
-            if (article == null) {
-                System.out.println("NULLLLLLLLLLLLL");
-            } else {
-                articleRepo.save(article);
-                System.out.println("********************");
-            }
-            redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
-                    " color: #bd2130\">Пользователь \"" +
-                    "\" успешно добавлен</span>");
+            articleRepo.save(article);
             return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#thanks").build();
         }
     }

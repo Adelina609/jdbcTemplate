@@ -3,12 +3,12 @@ package ru.kpfu.itis.springControllers.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
-import ru.kpfu.itis.springControllers.dao.SourceRepo;
+import ru.kpfu.itis.springControllers.repository.SourceRepo;
 import ru.kpfu.itis.springControllers.model.Source;
 
 import java.util.List;
 
-@ComponentScan("ru.kpfu.itis.springControllers.dao")
+@ComponentScan("ru.kpfu.itis.springControllers.repository")
 @ComponentScan("ru.kpfu.itis.springControllers.model")
 @Service
 public class SourcesService {

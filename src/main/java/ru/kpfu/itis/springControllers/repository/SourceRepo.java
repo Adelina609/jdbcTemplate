@@ -1,4 +1,4 @@
-package ru.kpfu.itis.springControllers.dao;
+package ru.kpfu.itis.springControllers.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.kpfu.itis.springControllers.model.Source;

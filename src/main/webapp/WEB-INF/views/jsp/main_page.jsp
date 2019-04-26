@@ -64,63 +64,26 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <c:forEach items="${articles}" var="article">
+            <c:forEach items="${episodes}" var="episode">
             <div class="post-preview">
                 <h2 class="post-title">
-                    ${article.getTitle()}
+                    ${episode.getName()}
                 </h2>
                 <p class="post-subtitle">
-                    ${article.getText()}
+                    ${episode.getEpisode()}
                 </p>
-                <span class="open-all">показать полностью</span>
-                <div class="more" style="display: none">дополнительный текст<br>
-                    <span class="close">скрыть</span>
-                </div>
-                <p class="post-meta">Posted by
-                    ${article.getUsername()}</p>
+                <h4>Characters:</h4>
+                <p class="post-subtitle">
+                    <a href="${episode.getUrl()}">${episode.getUrl()}</a>
+                </p>
+                <p class="post-subtitle">
+                    ${episode.getAirDate()}
+                </p>
+                <p class="post-subtitle">
+                    ${episode.getCreated()}
+                </p>
             </div>
             </c:forEach>
-
-                <div class="opisanie">
-                    <h2>Краткое описание</h2>
-                    <p>При установке ксенонового оборудования на современные автомобили, оснащенные бортовым компьютером, часто можно столкнуться с тем, что компьютер выдает ошибку в работе системы освещения (загорается соответствующая лампочка на панели приборов). На целом ряде автомобилей это приводит к автоматическому отключению подачи питания на фары. </p>
-                    <button class="open-all" id="open-all1" style="display: block">показать полностью</button>
-                    <div class="more" id="more1">дополнительный текст<br>
-                        <button class="close" id="close1">скрыть</button>
-                    </div>
-                </div>
-
-            <div class="opisanie">
-                <h2>Краткое описание</h2>
-                <p>При установке ксенонового оборудования на современные автомобили, оснащенные бортовым компьютером, часто можно столкнуться с тем, что компьютер выдает ошибку в работе системы освещения (загорается соответствующая лампочка на панели приборов). На целом ряде автомобилей это приводит к автоматическому отключению подачи питания на фары. </p>
-                <button class="open-all" id="open-all2" style="display: block">показать полностью</button>
-                <div class="more" id="more2">дополнительный текст<br>
-                    <button class="close" id="close2">скрыть</button>
-                </div>
-            </div>
-
-            <div class="opisanie">
-                <h2>Краткое описание</h2>
-                <p>При установке ксенонового оборудования на современные автомобили, оснащенные бортовым компьютером, часто можно столкнуться с тем, что компьютер выдает ошибку в работе системы освещения (загорается соответствующая лампочка на панели приборов). На целом ряде автомобилей это приводит к автоматическому отключению подачи питания на фары. </p>
-                <button class="open-all" id="open-all3" style="display: block">показать полностью</button>
-                <div class="more" id="more3">дополнительный текст<br>
-                    <button class="close" id="close3">скрыть</button>
-                </div>
-            </div>
-
-            <div class="opisanie">
-                <h2>Краткое описание</h2>
-                <p>При установке ксенонового оборудования на современные автомобили, оснащенные бортовым компьютером, часто можно столкнуться с тем, что компьютер выдает ошибку в работе системы освещения (загорается соответствующая лампочка на панели приборов). На целом ряде автомобилей это приводит к автоматическому отключению подачи питания на фары. </p>
-                <button class="open-all" id="open-all" style="display: block">показать полностью</button>
-                <div class="more" id="more">дополнительный текст<br>
-                    <button class="close" id="close">скрыть</button>
-                </div>
-            </div>
-
-            <!-- Pager -->
-            <%--<div class="clearfix">--%>
-                <%--<a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>--%>
-            <%--</div>--%>
             </div>
         </div>
     </div>
