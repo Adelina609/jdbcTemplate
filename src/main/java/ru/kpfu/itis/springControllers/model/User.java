@@ -22,6 +22,10 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "login_id", referencedColumnName = "id")
+    private Login login;
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

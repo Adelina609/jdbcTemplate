@@ -23,8 +23,17 @@ public class UserService {
         userRepoo.save(user);
     }
 
+    public boolean findByEmailAndPassw(String email, String password){
+        return passwordEncoder.matches(password,
+                userRepoo.findByEmailAndPassword(email, password).getPassword());
+    }
+
     public  User get(String email){
-        return userRepoo.findByEmail(email).get(0);
+        if(isEmailExists(email)) {
+            return userRepoo.findByEmail(email).get(0);
+        } else {
+            return null;
+        }
     }
 
     public  void delete(User user){
@@ -34,6 +43,8 @@ public class UserService {
             userRepoo.delete(user);
         }
     }
+
+
 
     private boolean isEmailExists(String email) {
         User user = userRepoo.findByEmail(email).get(0);

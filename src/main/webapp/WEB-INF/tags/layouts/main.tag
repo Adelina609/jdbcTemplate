@@ -65,7 +65,7 @@
                         <a class="nav-link" href="/scitopus/profile">Личный Кабинет</a>
                     </li>
                     <li class="nav-item" id="login">
-                        <a class="nav-link" href="#openModal">Войти</a>
+                        <a class="nav-link" href="/scitopus/login">Войти</a>
                     </li>
                 </ul>
             </div>

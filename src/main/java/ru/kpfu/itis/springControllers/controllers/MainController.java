@@ -105,10 +105,6 @@ public class MainController {
         return "main_page";
     }
 
-    @RequestMapping("/profile")
-    public String profile(ModelMap map) {
-        return "personal_area";
-    }
 
     @RequestMapping("/thanks")
     public String thanks(ModelMap map) {
