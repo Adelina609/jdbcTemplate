@@ -12,17 +12,17 @@
 <!-- Navigation -->
 <main:main>
     <head>
-        <link rel="stylesheet" href="<c:url value="/css/modal_window.css"/>">
+        <link rel="stylesheet" href="<c:url value="/vendor/css/modal_window.css"/>">
     </head>
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/img/img_brain.jpg')">
+    <header class="masthead" style="background-image: url('/vendor/img/img_brain.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <h1>Личный кабинет</h1>
+                        <span class="subheading"></span>
                     </div>
                 </div>
             </div>

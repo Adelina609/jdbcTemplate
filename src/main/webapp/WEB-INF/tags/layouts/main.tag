@@ -21,7 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<c:url value="/css/modal_window.css"/>">
+    <link rel="stylesheet" href="<c:url value="/vendor/css/modal_window.css"/>">
     <script>
         function pageLoad() {
             var x = get_cookie ( "username" );

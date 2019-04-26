@@ -3,7 +3,7 @@
 <%@taglib prefix="main" tagdir="/WEB-INF/tags/layouts" %>
 
 <main:main>
-    <header class="masthead" style="background-image: url('/img/img_sci.jpg')">
+    <header class="masthead" style="background-image: url('/vendor/img/img_sci.jpg')">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">

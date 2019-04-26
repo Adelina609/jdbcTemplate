@@ -1,17 +1,13 @@
 package ru.kpfu.itis.springControllers.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.kpfu.itis.springControllers.dao.ArticleRepo;
@@ -21,27 +17,28 @@ import ru.kpfu.itis.springControllers.model.User;
 import ru.kpfu.itis.springControllers.services.UserService;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-//import ru.kpfu.itis.springControllers.services.UserService;
 
 @Controller
 @RequestMapping("/scitopus")
+@ComponentScan("ru.kpfu.itis.springControllers.services")
 public class MainController {
 
     @Autowired
     private ArticleRepo articleRepo;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(ModelMap map) {
         //map.put("viewVariable", "Just simple action");
-        List<Article> articles = new ArrayList<>();
-        articles.add(new Article("gyhjkl", "yghjknm", "rdtfyghuj"));
-        articles.add(new Article("1", "yghjknm", "rdtfyghuj"));
-        articles.add(new Article("2", "yghjknm", "rdtfyghuj"));
-        map.put("articles", articles);
-        return "main_page_temp";
+//        List<Article> articles = new ArrayList<>();
+//        articles.add(new Article("gyhjkl", "yghjknm", "rdtfyghuj"));
+//        articles.add(new Article("1", "yghjknm", "rdtfyghuj"));
+//        articles.add(new Article("2", "yghjknm", "rdtfyghuj"));
+//        map.put("articles", articles);
+        return "thanks";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
@@ -70,7 +67,7 @@ public class MainController {
 //            return "signUp_form";
 //        }
 //        else {
-//                userRepo.createUser(user);
+//                userService.createUser(user);
 //                redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium; color: #bd2130\">Пользователь \""
 //                        + user.getEmail()
 //                        + "\" успешно добавлен</span>");
@@ -92,7 +89,7 @@ public class MainController {
             if (user == null) {
                 System.out.println("NULLLLLLLLLLLLL");
             } else {
-                //save
+                userService.save(user);
                 System.out.println("********************");
             }
             redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
@@ -139,13 +136,12 @@ public class MainController {
                 System.out.println("NULLLLLLLLLLLLL");
             } else {
                 articleRepo.save(article);
-                //userService.save(article);
                 System.out.println("********************");
             }
             redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
                     " color: #bd2130\">Пользователь \"" +
                     "\" успешно добавлен</span>");
-            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#create").build();
+            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#thanks").build();
         }
     }
 

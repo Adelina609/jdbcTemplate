@@ -46,7 +46,7 @@
     </style>
 </head>
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/img_brain.jpg')">
+<header class="masthead" style="background-image: url('/vendor/img/img_brain.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">

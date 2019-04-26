@@ -9,9 +9,7 @@
 
 <main:main>
 <!-- Page Header -->
-<header class="masthead">
-        <%--style="background-image: url('/img/write.jpg')"--%>
-    <!--style="background-image: url('../../../../../../Desktop/startbootstrap-clean-blog-gh-pages/img/contact-bg.jpg')">-->
+<header class="masthead" style="background-image: url('/vendor/img/write.jpg')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
