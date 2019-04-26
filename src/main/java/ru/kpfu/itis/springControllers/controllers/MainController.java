@@ -1,18 +1,107 @@
 package ru.kpfu.itis.springControllers.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import ru.kpfu.itis.springControllers.dao.ArticleRepo;
+import ru.kpfu.itis.springControllers.model.Article;
+import ru.kpfu.itis.springControllers.model.User;
+
+import ru.kpfu.itis.springControllers.services.UserService;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+//import ru.kpfu.itis.springControllers.services.UserService;
 
 @Controller
 @RequestMapping("/scitopus")
 public class MainController {
 
-    @RequestMapping("/main")
+    @Autowired
+    private ArticleRepo articleRepo;
+
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(ModelMap map) {
-//        map.put("viewVariable", "Just simple action");
-        return "main_page";
+        //map.put("viewVariable", "Just simple action");
+        List<Article> articles = new ArrayList<>();
+        articles.add(new Article("gyhjkl", "yghjknm", "rdtfyghuj"));
+        articles.add(new Article("1", "yghjknm", "rdtfyghuj"));
+        articles.add(new Article("2", "yghjknm", "rdtfyghuj"));
+        map.put("articles", articles);
+        return "main_page_temp";
     }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String getRegistration(ModelMap map) {
+        map.put("user", new User());
+        return "registration";
+    }
+
+//    @RequestMapping(value = "/new_user", method = RequestMethod.GET)
+//    public String getSignUpPage(ModelMap map){
+//        map.put("user", new User());
+////        map.put("message0", this.msa.getMessage("controller.message"));
+////        map.put("message1", this.msa.getMessage("controller.param.message", new Double[]{9.78}));
+//        return "signUp_form";
+//    }
+
+    // @RequestMapping(value = "/new_user", method = RequestMethod.POST)
+//    public String postSignUpPage(
+//            RedirectAttributes redirectAttributes,
+//            @Valid @ModelAttribute("user") User user,
+//            BindingResult result,
+//            ModelMap map){
+//
+//        if (result.hasErrors()) {
+//            System.out.println(Arrays.toString(result.getAllErrors().toArray()));
+//            return "signUp_form";
+//        }
+//        else {
+//                userRepo.createUser(user);
+//                redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium; color: #bd2130\">Пользователь \""
+//                        + user.getEmail()
+//                        + "\" успешно добавлен</span>");
+//                return "redirect:" + MvcUriComponentsBuilder.fromMappingName("RC#getSignUpPage").build();
+//            }
+//        }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String postRegistration(
+            RedirectAttributes redirectAttributes,
+            @Valid @ModelAttribute("user") User user,
+            BindingResult result,
+            ModelMap map) {
+
+        if (result.hasErrors()) {
+            System.out.println(Arrays.toString(result.getAllErrors().toArray()));
+            return "registration";
+        } else {
+            if (user == null) {
+                System.out.println("NULLLLLLLLLLLLL");
+            } else {
+                //save
+                System.out.println("********************");
+            }
+            redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
+                    " color: #bd2130\">Пользователь \"" +
+                    "\" успешно добавлен</span>");
+            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#main").build();
+        }
+    }
+
 
     @RequestMapping("/videos")
     public String videos(ModelMap map) {
@@ -24,24 +113,40 @@ public class MainController {
         return "personal_area";
     }
 
-    @RequestMapping("/sources")
-    public String sources(ModelMap map) {
-        return "sources";
-    }
-
-    @RequestMapping("/registration")
-    public String registration(ModelMap map) {
-        return "registration";
-    }
-
     @RequestMapping("/thanks")
     public String thanks(ModelMap map) {
         return "thanks";
     }
 
-    @RequestMapping("/create")
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(ModelMap map) {
-        return "create_own_post";
+        map.put("article", new Article());
+        return "create";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String postCreate(
+            RedirectAttributes redirectAttributes,
+            @Valid @ModelAttribute("article") Article article,
+            BindingResult result,
+            ModelMap map) {
+
+        if (result.hasErrors()) {
+            System.out.println(Arrays.toString(result.getAllErrors().toArray()));
+            return "create";
+        } else {
+            if (article == null) {
+                System.out.println("NULLLLLLLLLLLLL");
+            } else {
+                articleRepo.save(article);
+                //userService.save(article);
+                System.out.println("********************");
+            }
+            redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
+                    " color: #bd2130\">Пользователь \"" +
+                    "\" успешно добавлен</span>");
+            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#create").build();
+        }
     }
 
 

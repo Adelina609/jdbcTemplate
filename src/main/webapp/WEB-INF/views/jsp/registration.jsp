@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!Doctype html>
 <html>
     <head>
@@ -28,45 +32,25 @@
         <link href="/css/registration.css" type="text/css" rel="stylesheet">
     </head>
         <body>
-            <form class="form-container" action="/scitopus/registration" method="post">
-                <div class="form-title">
-                    <h2>Регистрация</h2>
-                </div>
-                <div class="form-title">Email</div>
-                <input class="form-field"
-                       type="text"
-                       name="email" required
-                <c:if test="${not empty emailValue}">
-                       value=${emailValue}
-                </c:if>>
-                <c:if test="${not empty email_error}">
-                    <small>${email_error}</small>
-                </c:if><br />
-                <div class="form-title">Имя пользователя</div>
-                <input class="form-field"
-                       type="text"
-                       name="username" required
-                <c:if test="${not empty nameValue}">
-                       value=${nameValue}
-                </c:if>>
-                <div class="form-title">Пароль</div>
-                <input class="form-field"
-                       type="password"
-                       name="password1" required
-                <c:if test="${not empty pass_error}">
-                    <small>${pass_error}</small>
-                </c:if><br />
-                <div class="form-title">Подтвердите пароль</div>
-                <input class="form-field"
-                       type="password"
-                       name="password2" required >
-                <c:if test="${not empty equals_error}">
-                    <small>${equals_error}</small>
-                </c:if>
-                <div class="submit-container">
-                    <input class="submit-button" type="submit" value="Зарегистрироваться" />
-                </div>
-            </form>
+        <div class="form-title">
+            <h2>Регистрация</h2>
+        </div>
+
+        <form:form method="POST" modelAttribute="user">
+            <form:label path="name">Name</form:label>
+            <form:input path="name"/>
+            <form:errors path="name" /><br>
+
+            <form:label path="email">Email</form:label>
+            <form:input id="email" path="email"/>
+            <form:errors path="email" /><br>
+
+            <form:label path="password">Password</form:label>
+            <form:password path="password" id="password"/>
+            <form:errors path="password" /><br>
+
+            <input type="submit" value="Submit" />
+        </form:form>
     <!-- Footer -->
     <footer>
         <div class="container">
