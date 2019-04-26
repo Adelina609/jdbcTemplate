@@ -10,46 +10,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import ru.kpfu.itis.springControllers.model.User;
-import ru.kpfu.itis.springControllers.services.UserService;
+import ru.kpfu.itis.springControllers.dao.ArticleRepo;
+import ru.kpfu.itis.springControllers.model.Article;
 import javax.validation.Valid;
 import java.util.Arrays;
 
 @Controller
 @RequestMapping("/scitopus")
 @ComponentScan("ru.kpfu.itis.springControllers.services")
-public class RegistrationController {
+public class CreatingController {
 
     @Autowired
-    private UserService userService;
+    private ArticleRepo articleRepo;
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String getRegistration(ModelMap map) {
-        map.put("user", new User());
-        return "registration";
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(ModelMap map) {
+        map.put("article", new Article());
+        return "create";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String postRegistration(
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String postCreate(
             RedirectAttributes redirectAttributes,
-            @Valid @ModelAttribute("user") User user,
+            @Valid @ModelAttribute("article") Article article,
             BindingResult result,
             ModelMap map) {
 
         if (result.hasErrors()) {
             System.out.println(Arrays.toString(result.getAllErrors().toArray()));
-            return "registration";
+            return "create";
         } else {
-            if (user == null) {
+            if (article == null) {
                 System.out.println("NULLLLLLLLLLLLL");
             } else {
-                userService.save(user);
+                articleRepo.save(article);
                 System.out.println("********************");
             }
             redirectAttributes.addFlashAttribute("message", "<span style=\"font-size: medium;" +
                     " color: #bd2130\">Пользователь \"" +
                     "\" успешно добавлен</span>");
-            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#main").build();
+            return "redirect:" + MvcUriComponentsBuilder.fromMappingName("MC#thanks").build();
         }
     }
 }

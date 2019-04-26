@@ -9,6 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="main" tagdir="/WEB-INF/tags/layouts" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!-- Navigation -->
 <main:main>
     <head>
@@ -29,6 +34,25 @@
         </div>
     </header>
 
+
+
+    <h3>Изменить информацию</h3>
+    <form:form method="POST" modelAttribute="user">
+        <div class="form-title">
+        <form:label path="name">Name</form:label>
+        <form:input path="name"/>
+        <form:errors path="name" /><br>
+        </div>
+        <div class="form-title">
+        <form:label path="password">Password</form:label>
+        <form:password path="password" id="password"/>
+        <form:errors path="password" /><br>
+        </div>
+
+        <input type="submit" value="Submit" />
+    </form:form>
+
+
     <!-- Main Content -->
     <div class="container">
         <div class="row">
@@ -36,17 +60,11 @@
                 <c:forEach items="${articles}" var="article">
                     <div class="post-preview">
                         <h2 class="post-title">
-                                ${article.getTitle()}
+                                ${article.getName()}
                         </h2>
                         <p class="post-subtitle">
-                                ${article.getText()}
+                                ${article.getDescription()}
                         </p>
-                        <span class="open-all">показать полностью</span>
-                        <div class="more" style="display: none">дополнительный текст<br>
-                            <span class="close">скрыть</span>
-                        </div>
-                        <p class="post-meta">Posted by
-                                ${article.getUsername()}</p>
 
                     </div>
                 </c:forEach>
@@ -54,6 +72,9 @@
         </div>
     </div>
     </div>
+
+    <a class="nav-link" href="/scitopus/main">Удалить</a>
+
 </main:main>
 
 </html>

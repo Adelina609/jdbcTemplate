@@ -78,5 +78,4 @@ public class RootConfig {
 
         return properties;
     }
-
 }

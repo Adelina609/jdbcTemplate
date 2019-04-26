@@ -31,12 +31,10 @@
                 <div class="submit-container">
                     <input class="submit-button" type="submit" value="OK" />
                 </div>
-                <div align="center">
-                    <a style="font-size: medium;" href="/scitopus/registration">Регистрация</a>
-                </div>
             </div>
             </form:form>
         </div>
     </div>
 </div>
+    <a href="/scitopus/registration">Регистрация</a>
 </main:main>

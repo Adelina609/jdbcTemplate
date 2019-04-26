@@ -36,18 +36,16 @@ public class UserService {
         }
     }
 
+    private boolean isEmailExists(String email) {
+        User user = userRepoo.findByEmail(email).get(0);
+        return user != null;
+    }
+
     public  void delete(User user){
         if(!isEmailExists(user.getEmail())){
             //
         } else {
             userRepoo.delete(user);
         }
-    }
-
-
-
-    private boolean isEmailExists(String email) {
-        User user = userRepoo.findByEmail(email).get(0);
-        return user != null;
     }
 }

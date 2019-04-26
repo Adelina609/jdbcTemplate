@@ -38,7 +38,7 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls">
                             <form:label path="text">Текст</form:label>
-                            <form:input id="text" path="text"/>
+                            <form:textarea  id="text" path="text"/>
                             <form:errors path="text" /><br>
                         </div>
                     </div>
