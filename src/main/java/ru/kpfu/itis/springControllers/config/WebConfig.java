@@ -54,6 +54,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .build();
     }
 
+
     @Bean
     public OkHttpClient okHttpClient() {
         return new OkHttpClient();

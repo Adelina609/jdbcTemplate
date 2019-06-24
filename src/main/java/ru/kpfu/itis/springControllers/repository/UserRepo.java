@@ -10,5 +10,11 @@ public interface UserRepo extends CrudRepository<User, Long> {
 
     List<User> findByEmail(String email);
 
+    List<User> findAll();
+
     User findByEmailAndPassword(String email, String password);
+
+    //getAll() //все вопросы
+    //putOne post запрос
+    //
 }

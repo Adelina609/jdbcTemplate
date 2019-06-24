@@ -14,7 +14,7 @@ import ru.kpfu.itis.springControllers.utils.UserNotFoundException;
 public class UserService {
 
     @Autowired
-    private  UserRepo userRepoo;
+    private UserRepo userRepoo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

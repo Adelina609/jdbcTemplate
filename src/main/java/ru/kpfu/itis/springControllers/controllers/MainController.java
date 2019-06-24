@@ -23,6 +23,7 @@ public class MainController {
         return "main_page";
     }
 
+
     @RequestMapping("/thanks")
     public String thanks(ModelMap map) {
         return "thanks";
